@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zouari-njah-accounting-consulting-multipage.vercel.app/sitemap.xml

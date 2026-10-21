@@ -1,0 +1,28 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_HERO_VIDEO_ONE_FILE_ID: ${VITE_HERO_VIDEO_ONE_FILE_ID:-}
+        VITE_HERO_VIDEO_TWO_FILE_ID: ${VITE_HERO_VIDEO_TWO_FILE_ID:-}
+    image: znac-agency:latest
+    container_name: znac-agency
+    ports:
+      - "${APP_PORT:-0001}:80"
+    init: true
+    restart: unless-stopped
+    mem_limit: 128m
+    cpus: "0.50"
+    healthcheck:
+      test:
+        ["CMD-SHELL", "wget --spider --quiet http://127.0.0.1/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

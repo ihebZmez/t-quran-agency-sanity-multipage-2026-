@@ -1,0 +1,24 @@
+{
+  "contact": {
+    "badge": "Contact",
+    "title": "Parlons de",
+    "titleHighlight": "votre projet",
+    "subtitle": "Notre équipe est à votre écoute pour toute question ou demande d’accompagnement.",
+    "form": {
+      "name": "Nom complet *",
+      "phone": "Téléphone *",
+      "email": "Adresse e-mail *",
+      "service": "Service concerné",
+      "message": "Votre message",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours..."
+    },
+    "info": {
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "address": "Adresse"
+    },
+    "social": "Retrouvez-nous",
+    "success": "Votre demande a bien été envoyée. Nous vous répondrons rapidement."
+  }
+}
