@@ -8,13 +8,13 @@ const FaqPage = () => {
   const { data: faqs = [] } = useFaqs();
 
   return (
-    <main className="min-h-[70vh] bg-paper px-4 pb-24 pt-36 text-ink md:px-8">
+    <main className="quran-page min-h-[70vh] px-4 pb-24 pt-24 text-ink md:px-8">
       <Seo {...seoConfig.faq} />
       <div className="container">
         <SectionTitle
-          badge="Informations"
-          title="Questions fréquentes"
-          subtitle="Les réponses aux questions les plus courantes sur nos services."
+          badge="معلومات"
+          title="أسئلة شائعة"
+          subtitle="إجابات عن الاستفسارات المتعلقة بالبرامج القرآنية والتسجيل."
           align="left"
           headingAs="h1"
         />
@@ -23,8 +23,8 @@ const FaqPage = () => {
             <FaqAccordion items={faqs} />
           </div>
         ) : (
-          <p className="mt-10 text-ink/60">
-            Aucune question n’est publiée pour le moment.
+          <p className="mt-10 text-ink/60" role="status">
+            لا توجد أسئلة منشورة حاليًا. يرجى التواصل مع الفرع للاستفسار.
           </p>
         )}
       </div>

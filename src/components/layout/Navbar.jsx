@@ -3,26 +3,21 @@ import { NavLink, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Menu, X, Building2 } from "lucide-react";
-import LanguageSwitcher from "./LanguageSwitcher";
-import SanityImage from "../common/SanityImage";
-import { useSiteSettings } from "../../hooks/useSiteSettings";
+import { Menu, X, BookOpen } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { path: "/", title: "Accueil" },
-  { path: "/services", title: "Services" },
-  { path: "/expertises", title: "Expertises" },
-  { path: "/a-propos", title: "Le cabinet" },
-  { path: "/actualites", title: "Actualités" },
-  { path: "/faq", title: "FAQ" },
-  { path: "/contact", title: "Contact" },
+  { path: "/", title: "الرئيسية" },
+  { path: "/a-propos", title: "من نحن" },
+  { path: "/services", title: "برامجنا" },
+  { path: "/expertises", title: "المعلمون" },
+  { path: "/actualites", title: "الأنشطة والمعرض" },
+  { path: "/contact", title: "التسجيل والاتصال" },
 ];
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { data: settings } = useSiteSettings();
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef(null);
   const logoRef = useRef(null);
@@ -32,9 +27,8 @@ const Navbar = () => {
   const mobileOverlayRef = useRef(null);
   const mobileItemsRef = useRef([]);
 
-  const agencyName =
-    settings?.gymName || settings?.shortName || "Cabinet de conseil";
-  const handleBookTrial = () => navigate("/contact");
+  const associationName = "الرابطة الوطنية للقرآن الكريم";
+  const handleRegistration = () => navigate("/contact");
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -66,9 +60,9 @@ const Navbar = () => {
       start: 60,
       onEnter: () => {
         gsap.to(navRef.current, {
-          backgroundColor: "rgba(10,10,10,0.85)",
+          backgroundColor: "rgba(5,48,36,0.96)",
           backdropFilter: "blur(24px)",
-          borderBottomColor: "rgba(255,85,51,0.12)",
+          borderBottomColor: "rgba(190,151,91,0.2)",
           paddingTop: "0.6rem",
           paddingBottom: "0.6rem",
           duration: 0.5,
@@ -76,7 +70,7 @@ const Navbar = () => {
       },
       onLeaveBack: () => {
         gsap.to(navRef.current, {
-          backgroundColor: "rgba(10,10,10,0)",
+          backgroundColor: "rgba(5,48,36,0.96)",
           backdropFilter: "blur(0px)",
           borderBottomColor: "rgba(255,255,255,0)",
           paddingTop: "1.25rem",
@@ -128,9 +122,9 @@ const Navbar = () => {
         ref={navRef}
         className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 border-b border-transparent"
         style={{
-          paddingTop: "0.1rem",
-          paddingBottom: "0.1rem",
-          backgroundColor: "rgba(10,10,10,0)",
+          paddingTop: "0.65rem",
+          paddingBottom: "0.65rem",
+          backgroundColor: "rgba(5,48,36,0.96)",
           transition: "padding 0.4s",
         }}
       >
@@ -142,32 +136,23 @@ const Navbar = () => {
           >
             <div
               ref={logoRef}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold"
             >
-              {settings?.logo ? (
-                <SanityImage
-                  source={settings.logo}
-                  alt={agencyName}
-                  width={80}
-                  className="h-full w-full rounded-lg object-contain p-1"
-                />
-              ) : (
-                <Building2 className="h-5 w-5 text-navy" />
-              )}
+              <BookOpen className="h-5 w-5 text-navy" aria-hidden="true" />
             </div>
-            <span className="min-w-0 whitespace-nowrap text-base font-bold uppercase leading-none tracking-[0.08em] text-white sm:text-lg">
-              {agencyName}
+            <span className="min-w-0 whitespace-nowrap text-xs font-bold leading-snug text-white sm:text-sm">
+              {associationName}
             </span>
           </NavLink>
 
           {/* Desktop Links */}
-          <ul className="hidden list-none gap-4 p-0 m-0 lg:flex lg:items-center">
+          <ul className="hidden list-none gap-4 p-0 m-0 xl:flex xl:items-center">
             {navLinks.map((link, i) => (
               <li key={link.path} ref={(el) => (linksRef.current[i] = el)}>
                 <NavLink
                   to={link.path}
                   className={({ isActive }) =>
-                    `whitespace-nowrap text-[0.68rem] font-semibold uppercase leading-none tracking-[0.08em] transition-colors duration-300 relative pb-1 ${
+                    `whitespace-nowrap text-xs font-semibold leading-none transition-colors duration-300 relative pb-1 ${
                       isActive ? "text-gold" : "text-white/60 hover:text-white"
                     }`
                   }
@@ -180,20 +165,18 @@ const Navbar = () => {
 
           {/* Right side */}
           <div className="flex items-center gap-4">
-            <LanguageSwitcher />
-
             <button
               ref={ctaRef}
-              onClick={handleBookTrial}
-              className="hidden md:block bg-gold text-navy px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:bg-gold-light hover:shadow-lg hover:shadow-gold/25"
+              onClick={handleRegistration}
+              className="hidden xl:block bg-gold text-navy px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:bg-gold-light hover:shadow-lg hover:shadow-gold/25"
             >
-              Contact
+              التسجيل
             </button>
 
             <button
               onClick={() => setMenuOpen(true)}
-              className="md:hidden text-white"
-              aria-label="Open menu"
+              className="xl:hidden text-white"
+              aria-label="فتح القائمة"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -211,13 +194,13 @@ const Navbar = () => {
       {/* Mobile Drawer */}
       <div
         ref={mobileMenuRef}
-        className="fixed top-0 right-0 bottom-0 z-50 flex w-[min(340px,90vw)] flex-col overflow-y-auto border-l border-white/10 bg-navy p-8 transform translate-x-full"
+        className="fixed top-0 right-0 bottom-0 z-50 flex w-[min(340px,90vw)] flex-col overflow-y-auto border-r border-white/10 bg-navy p-8 transform translate-x-full"
       >
         <div className="flex justify-between items-center mb-8">
-          <span className="text-white font-bold tracking-wider uppercase">
-            {agencyName}
+          <span className="text-white font-bold">
+            {associationName}
           </span>
-          <button onClick={closeMenu} className="text-white">
+          <button onClick={closeMenu} className="text-white" aria-label="إغلاق القائمة">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -229,7 +212,7 @@ const Navbar = () => {
                 to={link.path}
                 onClick={closeMenu}
                 className={({ isActive }) =>
-                  `text-lg font-medium uppercase tracking-wider transition-colors ${
+                  `text-lg font-medium transition-colors ${
                     isActive
                       ? "text-gym-orange"
                       : "text-white/80 hover:text-white"
@@ -246,11 +229,11 @@ const Navbar = () => {
           <button
             onClick={() => {
               closeMenu();
-              handleBookTrial();
+              handleRegistration();
             }}
-            className="w-full bg-gold text-navy py-4 rounded-full font-bold uppercase tracking-wider"
+            className="w-full bg-gold text-navy py-4 rounded-full font-bold"
           >
-            Contact
+            التسجيل
           </button>
         </div>
       </div>

@@ -78,7 +78,7 @@ const DriveHeroMedia = () => {
       <div className="agency-hero-image">
         <img
           src={POSTER_IMAGE}
-          alt="Équipe dirigeante de ZNAC"
+          alt="Équipe dirigeante de Association Coran Kelibia"
           className="h-full w-full object-cover"
           fetchPriority="high"
         />

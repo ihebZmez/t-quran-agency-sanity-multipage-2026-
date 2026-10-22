@@ -35,12 +35,18 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/programmes" element={<ServicesPage />} />
             <Route path="/expertises" element={<ExpertisePage />} />
             <Route path="/expertises/:slug" element={<ExpertiseDetail />} />
+            <Route path="/enseignants" element={<ExpertisePage />} />
             <Route path="/a-propos" element={<Company />} />
+            <Route path="/about" element={<Company />} />
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/inscription" element={<Contact />} />
             <Route path="/actualites" element={<NewsPage />} />
+            <Route path="/activites" element={<NewsPage />} />
+            <Route path="/galerie" element={<NewsPage />} />
             {!package1SiteVitrine && (
               <Route path="/corporate" element={<Contact />} />
             )}

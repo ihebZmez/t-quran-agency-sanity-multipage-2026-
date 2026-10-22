@@ -1,10 +1,13 @@
-export const NEWS_QUERY = `*[_type == "news" && active == true] | order(publishedAt desc) {
+export const NEWS_QUERY = `*[_type == "news" && active == true && mediaType in ["announcement", "photo", "video"]] | order(publishedAt desc) {
   _id,
   title,
   description,
   image,
   category,
   date,
+  location,
+  registrationInstructions,
+  mediaType,
   link,
   featured,
   order,
@@ -21,7 +24,7 @@ export const TESTIMONIALS_QUERY = `*[_type == "testimonial" && active == true] |
   location
 }`;
 
-export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
+export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings" && gymName match "*الرابطة الوطنية للقرآن الكريم*"][0] {
   gymName,
   shortName,
   tagline,
@@ -38,7 +41,7 @@ export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
   social
 }`;
 
-export const FAQS_QUERY = `*[_type == "faq" && active == true] | order(order asc, featured desc) {
+export const FAQS_QUERY = `*[_type == "faq" && active == true && category in ["البرامج", "التسجيل", "الفرع"]] | order(order asc, featured desc) {
   _id,
   question,
   answer,
@@ -48,7 +51,7 @@ export const FAQS_QUERY = `*[_type == "faq" && active == true] | order(order asc
   order
 }`;
 
-export const SERVICES_QUERY = `*[_type == "service" && active == true] | order(order asc) {
+export const SERVICES_QUERY = `*[_type == "service" && active == true && audience in ["women", "men", "children", "all"]] | order(order asc) {
   _id,
   title,
   "slug": slug.current,
@@ -58,6 +61,11 @@ export const SERVICES_QUERY = `*[_type == "service" && active == true] | order(o
   coverImage,
   heroImage,
   category,
+  audience,
+  schedule,
+  location,
+  registrationInstructions,
+  registrationOpen,
   features,
   benefits,
   commentDemarrer,
@@ -81,15 +89,13 @@ export const EXPERTISES_QUERY = `*[_type == "expertise" && active == true] | ord
   order
 }`;
 
-export const TEAM_QUERY = `*[_type == "teamMember" && active == true] | order(order asc) {
+export const TEAM_QUERY = `*[_type == "teamMember" && active == true && count(assignedPrograms) > 0] | order(order asc) {
   _id,
   name,
   position,
   biography,
   photo,
-  linkedin,
-  email,
-  expertise,
+  "assignedPrograms": assignedPrograms[]->{_id, title, "slug": slug.current},
   order
 }`;
 

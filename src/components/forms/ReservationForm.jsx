@@ -22,15 +22,25 @@ const ReservationForm = () => {
     phone: "",
     email: "",
     service: "",
+    ageGroup: "",
     message: "",
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+      ...(name === "service" && value !== "children" ? { ageGroup: "" } : {}),
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setError(t("contact.error"));
+      return;
+    }
     setIsSubmitting(true);
     setError(null);
 
@@ -44,6 +54,7 @@ const ReservationForm = () => {
           from_email: formData.email,
           phone: formData.phone,
           activity: formData.service,
+          age_group: formData.ageGroup,
           message: formData.message,
         },
         EMAILJS_PUBLIC_KEY,
@@ -56,6 +67,7 @@ const ReservationForm = () => {
           phone: "",
           email: "",
           service: "",
+          ageGroup: "",
           message: "",
         });
 
@@ -76,11 +88,11 @@ const ReservationForm = () => {
           setIsSubmitted(false);
         }, 5000);
       } else {
-        setError("Une erreur est survenue. Veuillez réessayer.");
+        setError(t("contact.error"));
       }
     } catch (err) {
       console.error("EmailJS error:", err);
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      setError(t("contact.error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -93,13 +105,14 @@ const ReservationForm = () => {
           <input
             type="text"
             name="name"
+            dir="rtl"
             value={formData.name}
             onChange={handleChange}
             required
             placeholder=" "
-            className="w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300"
+            className="peer w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300"
           />
-          <label className="absolute left-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
+          <label className="absolute right-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
             {t("contact.form.name")}
           </label>
         </div>
@@ -108,13 +121,14 @@ const ReservationForm = () => {
           <input
             type="tel"
             name="phone"
+            dir="ltr"
             value={formData.phone}
             onChange={handleChange}
             required
             placeholder=" "
-            className="w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300"
+            className="peer w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300"
           />
-          <label className="absolute left-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
+          <label className="absolute right-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
             {t("contact.form.phone")}
           </label>
         </div>
@@ -126,11 +140,11 @@ const ReservationForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          required
           placeholder=" "
-          className="w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300"
+          dir="ltr"
+          className="peer w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300"
         />
-        <label className="absolute left-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
+        <label className="absolute right-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
           {t("contact.form.email")}
         </label>
       </div>
@@ -140,47 +154,77 @@ const ReservationForm = () => {
           name="service"
           value={formData.service}
           onChange={handleChange}
+          dir="rtl"
           className="w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gym-orange transition-colors duration-300 appearance-none"
         >
           <option value="" className="text-black">
             {t("contact.form.service")}
           </option>
-          <option value="finance" className="text-black">
-            Finances & comptabilité
+          <option value="women" className="text-black">
+            حلقات النساء
           </option>
-          <option value="audit" className="text-black">
-            Audit & conformité
+          <option value="men" className="text-black">
+            حلقات الرجال
           </option>
-          <option value="legal" className="text-black">
-            Droit & stratégie juridique
-          </option>
-          <option value="tax" className="text-black">
-            Fiscalité & droits de succession
-          </option>
-          <option value="investment" className="text-black">
-            Investissement & croissance
-          </option>
-          <option value="advisory" className="text-black">
-            Conseil de direction
+          <option value="children" className="text-black">
+            حلقات الأطفال
           </option>
         </select>
       </div>
 
+      {formData.service === "children" && (
+        <div>
+          <label
+            htmlFor="ageGroup"
+            className="mb-2 block text-sm text-white/70"
+          >
+            الفئة العمرية للمشارك *
+          </label>
+          <select
+            id="ageGroup"
+            name="ageGroup"
+            value={formData.ageGroup}
+            onChange={handleChange}
+            required
+            dir="rtl"
+            className="w-full rounded-xl border border-gym-border bg-white/5 px-4 py-3.5 text-white focus:outline-none focus:border-gym-orange"
+          >
+            <option value="" className="text-black">
+              اختاروا الفئة العمرية
+            </option>
+            <option value="6-9" className="text-black">
+              من 6 إلى 9 سنوات
+            </option>
+            <option value="10-12" className="text-black">
+              من 10 إلى 12 سنة
+            </option>
+            <option value="13+" className="text-black">
+              13 سنة فأكثر
+            </option>
+          </select>
+        </div>
+      )}
+
       <div className="relative">
         <textarea
           name="message"
+          dir="rtl"
           value={formData.message}
           onChange={handleChange}
           rows={4}
           placeholder=" "
-          className="w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300 resize-none"
+          className="peer w-full bg-white/5 border border-gym-border rounded-xl px-4 py-3.5 text-white placeholder-transparent focus:outline-none focus:border-gym-orange transition-colors duration-300 resize-none"
         />
-        <label className="absolute left-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
+        <label className="absolute right-4 top-3.5 text-white/40 text-sm transition-all duration-300 pointer-events-none peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-gym-orange">
           {t("contact.form.message")}
         </label>
       </div>
 
-      {error && <div className="text-red-400 text-sm text-center">{error}</div>}
+      {error && (
+        <div role="alert" className="text-red-400 text-sm text-center">
+          {error}
+        </div>
+      )}
 
       <Button
         type="submit"
@@ -205,7 +249,9 @@ const ReservationForm = () => {
       {isSubmitted && (
         <div className="success-check flex items-center gap-3 p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400">
           <CheckCircle className="w-5 h-5 shrink-0" />
-          <span className="text-sm">{t("contact.success")}</span>
+          <span className="text-sm" role="status">
+            {t("contact.success")}
+          </span>
         </div>
       )}
     </form>

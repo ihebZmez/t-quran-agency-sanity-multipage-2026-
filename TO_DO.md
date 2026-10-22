@@ -1,6 +1,6 @@
 # zouari-njah-accounting-consulting — SEO Audit Report
 
-**Site:** znac.vercel.app
+**Site:** association-coran-kelibia.vercel.app
 **Date:** 2026-09-21
 
 ---
@@ -67,16 +67,16 @@
 
 ## 📝 Current Meta
 
-| Field            | Value                                                                                                                                                                                                  |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| URL              | `znac.vercel.app`                                                                                                                                                                                      |
-| Title            | `znac \| Salle de sport & fitness à Mourouj, Tunis`                                                                                                                                                    |
-| Meta Description | `znac, votre salle de sport premium à Mourouj, Tunis. Musculation, cardio, coaching personnel, cours collectifs (Zumba, Boxing, Yoga). Équipements Technogym. Réservez votre séance d'essai gratuite.` |
-| Canonical        | `https://znac.vercel.app/`                                                                                                                                                                             |
-| Sitemap          | `https://znac.vercel.app/sitemap.xml`                                                                                                                                                                  |
-| Robots           | `https://znac.vercel.app/robots.txt`                                                                                                                                                                   |
+| Field            | Value                                                                                                                                                                                                                       |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| URL              | `association-coran-kelibia.vercel.app`                                                                                                                                                                                      |
+| Title            | `association-coran-kelibia \| Salle de sport & fitness à Mourouj, Tunis`                                                                                                                                                    |
+| Meta Description | `association-coran-kelibia, votre salle de sport premium à Mourouj, Tunis. Musculation, cardio, coaching personnel, cours collectifs (Zumba, Boxing, Yoga). Équipements Technogym. Réservez votre séance d'essai gratuite.` |
+| Canonical        | `https://association-coran-kelibia.vercel.app/`                                                                                                                                                                             |
+| Sitemap          | `https://association-coran-kelibia.vercel.app/sitemap.xml`                                                                                                                                                                  |
+| Robots           | `https://association-coran-kelibia.vercel.app/robots.txt`                                                                                                                                                                   |
 
-> ⚠️ Note: canonical uses `znac` (singular) while the site is `znac` (plural) — verify which is correct.
+> ⚠️ Note: canonical uses `association-coran-kelibia` (singular) while the site is `association-coran-kelibia` (plural) — verify which is correct.
 
 ---
 

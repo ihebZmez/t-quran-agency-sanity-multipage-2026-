@@ -1,73 +1,74 @@
 import { siteConfig } from "./siteConfig";
 
-const siteName = "ZNAC | Conseil financier, juridique et stratégique";
-const defaultImage = `${siteConfig.siteUrl}/images/Equipe/Tarek_Zouari.jpeg`;
+const associationName =
+  "الفرع المحلي للرابطة الوطنية للقرآن الكريم بسيدي بوضاوي — قليبية";
+const defaultImage = `${siteConfig.siteUrl}/images/Activity%20Images/quran.jpg`;
 
 export const seoConfig = {
   home: {
-    title: siteName,
+    title: "القرآن الكريم نورٌ وهداية | الرابطة الوطنية للقرآن الكريم — قليبية",
     description:
-      "ZNAC accompagne les entreprises et investisseurs en Tunisie en comptabilité, finance, audit, fiscalité et conseil juridique.",
+      "الفرع المحلي للرابطة الوطنية للقرآن الكريم بسيدي بوضاوي — قليبية. معًا نتعلّم كتاب الله، ونتدبّر آياته، ونسعى إلى العمل به.",
     canonical: "/",
     image: defaultImage,
     structuredData: {
       "@context": "https://schema.org",
-      "@type": "AccountingService",
-      name: "Zouari & Njah Accounting Consulting",
+      "@type": "Organization",
+      name: associationName,
       url: siteConfig.siteUrl,
       image: defaultImage,
-      email: "contact@zouari-njah.com",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Tunis",
+        addressLocality: "قليبية",
         addressCountry: "TN",
       },
     },
   },
   services: {
-    title: "Services de conseil financier, juridique et fiscal | ZNAC",
+    title: "برامجنا وحلقات التحفيظ | الرابطة الوطنية للقرآن الكريم — قليبية",
     description:
-      "Découvrez les services de comptabilité, audit, finance, fiscalité, droit des affaires et accompagnement des entreprises proposés par ZNAC en Tunisie.",
+      "تعرّفوا إلى برامج القرآن الكريم وحلقات الحفظ والمراجعة المنشورة للنساء والرجال والأطفال في الفرع المحلي بسيدي بوضاوي — قليبية.",
     canonical: "/services",
     image: defaultImage,
   },
   serviceDetail: {
+    title: "البرامج القرآنية | الرابطة الوطنية للقرآن الكريم — قليبية",
     description:
-      "Un accompagnement professionnel en Tunisie pour structurer, sécuriser et développer votre activité.",
+      "تفاصيل البرامج القرآنية وحلقات التحفيظ والتسجيل لدى الفرع المحلي بسيدي بوضاوي — قليبية.",
     image: defaultImage,
   },
   expertise: {
-    title: "Expertises comptables, financières et juridiques | ZNAC",
+    title: "المعلمون والمشرفون | الرابطة الوطنية للقرآن الكريم — قليبية",
     description:
-      "Les domaines d’expertise de ZNAC couvrent la finance, l’audit, la comptabilité, le droit, la fiscalité et l’accompagnement des investisseurs en Tunisie.",
+      "تعرّفوا إلى المعلمين والمشرفين على البرامج القرآنية في الفرع المحلي بسيدي بوضاوي — قليبية.",
     canonical: "/expertises",
     image: defaultImage,
   },
   company: {
-    title: "À propos de ZNAC | Cabinet de conseil en Tunisie",
+    title: "من نحن | الفرع المحلي للرابطة الوطنية للقرآن الكريم — قليبية",
     description:
-      "Découvrez l’approche, l’équipe et les engagements du cabinet Zouari & Njah Accounting Consulting.",
+      "نبذة عن الفرع المحلي للرابطة الوطنية للقرآن الكريم بسيدي بوضاوي — قليبية، ورسالته وأهدافه في تعليم كتاب الله.",
     canonical: "/a-propos",
     image: defaultImage,
   },
   news: {
-    title: "Actualités et analyses professionnelles | ZNAC",
+    title: "الأنشطة والفعاليات ومعرض الصور | الرابطة الوطنية للقرآن الكريم",
     description:
-      "Analyses et actualités sur la comptabilité, la finance, l’audit, le droit et la fiscalité des entreprises en Tunisie.",
+      "تابعوا أنشطة الفرع المحلي للرابطة الوطنية للقرآن الكريم بسيدي بوضاوي — قليبية وإعلاناته وفعالياته المنشورة.",
     canonical: "/actualites",
     image: defaultImage,
   },
   faq: {
-    title: "Questions fréquentes | ZNAC",
+    title: "معلومات التسجيل والأسئلة الشائعة | الرابطة الوطنية للقرآن الكريم",
     description:
-      "Réponses aux questions fréquentes sur les services comptables, financiers, juridiques et fiscaux de ZNAC.",
+      "إجابات عن الاستفسارات المتكررة حول حلقات التحفيظ والبرامج القرآنية والتسجيل في فرع قليبية.",
     canonical: "/faq",
     image: defaultImage,
   },
   contact: {
-    title: "Contacter ZNAC | Conseil aux entreprises en Tunisie",
+    title: "التسجيل والاتصال بنا | الرابطة الوطنية للقرآن الكريم — قليبية",
     description:
-      "Contactez ZNAC pour parler de vos besoins en comptabilité, finance, audit, fiscalité ou conseil juridique en Tunisie.",
+      "تواصلوا مع الفرع المحلي للرابطة الوطنية للقرآن الكريم بسيدي بوضاوي — قليبية للاستفسار والتسجيل في البرامج المنشورة.",
     canonical: "/contact",
     image: defaultImage,
   },

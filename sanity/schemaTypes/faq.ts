@@ -2,51 +2,50 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'faq',
-  title: 'FAQ',
+  title: 'الأسئلة الشائعة حول القرآن والتسجيل',
   type: 'document',
   fields: [
     defineField({
       name: 'question',
-      title: 'Question',
+      title: 'السؤال',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'answer',
-      title: 'Réponse',
+      title: 'الإجابة',
       type: 'text',
       rows: 5,
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'category',
-      title: 'Catégorie',
+      title: 'المجال',
       type: 'string',
-      options: [
-        {title: 'Audit', value: 'Audit'},
-        {title: 'Fiscalité', value: 'Fiscalité'},
-        {title: 'Finance', value: 'Finance'},
-        {title: 'Investisseurs étrangers', value: 'Investisseurs étrangers'},
-        {title: 'Juridique', value: 'Juridique'},
-        {title: 'Social', value: 'Social'},
-        {title: 'Entreprises', value: 'Entreprises'},
-      ],
+      options: {
+        list: [
+          {title: 'البرامج', value: 'البرامج'},
+          {title: 'التسجيل', value: 'التسجيل'},
+          {title: 'الفرع', value: 'الفرع'},
+        ],
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'active',
-      title: 'Afficher sur le site',
+      title: 'نشر على الموقع',
       type: 'boolean',
       initialValue: true,
     }),
     defineField({
       name: 'featured',
-      title: 'Mettre en avant',
+      title: 'إبراز السؤال',
       type: 'boolean',
       initialValue: false,
     }),
     defineField({
       name: 'order',
-      title: 'Ordre d’affichage',
+      title: 'ترتيب العرض',
       type: 'number',
       initialValue: 0,
     }),

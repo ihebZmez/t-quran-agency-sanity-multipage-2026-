@@ -10,9 +10,9 @@ const FaqAccordion = ({ items = [], title, description, enabled = true }) => {
     <section className="agency-faq bg-white text-ink">
       <div className="container grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
         <div className="agency-reveal">
-          <p className="section-kicker">FAQ</p>
+          <p className="section-kicker">أسئلة وأجوبة</p>
           <h2 className="text-4xl font-bold tracking-tight md:text-5xl">
-            {title || "Questions fréquentes"}
+            {title || "استفسارات حول البرامج والتسجيل"}
           </h2>
           {description && (
             <p className="subtitle-text mt-4 max-w-xl">{description}</p>

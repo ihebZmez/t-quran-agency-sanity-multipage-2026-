@@ -1,88 +1,111 @@
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  BarChart3,
-  Building2,
-  CircleDollarSign,
-  Scale,
-  UsersRound,
-} from "lucide-react";
+import { BookOpen, CalendarDays, MapPin } from "lucide-react";
 import SectionTitle from "../components/ui/SectionTitle";
 import Seo from "../components/seo/Seo";
 import SanityImage from "../components/common/SanityImage";
 import { useServices } from "../hooks/useServices";
 import { seoConfig } from "../config/seoConfig";
 
-const iconMap = { BarChart3, Building2, CircleDollarSign, Scale, UsersRound };
+const audienceLabels = {
+  women: "للنساء",
+  men: "للرجال",
+  children: "للأطفال",
+  all: "للجميع",
+};
 
 const ServicesPage = () => {
-  const { data: services = [] } = useServices();
+  const { data: programs = [], loading } = useServices();
 
   return (
-    <div className="bg-navy text-white">
+    <main className="quran-page">
       <Seo {...seoConfig.services} />
-      <section className="px-4 pb-24 pt-40 md:px-8">
-        <div className="container grid gap-10 lg:grid-cols-[1fr_.8fr] lg:items-center">
-          <div>
-            <p className="section-kicker">Nos services</p>
-            <h1 className="mt-5 font-serif text-5xl leading-tight md:text-7xl">
-              Une expertise intégrée pour chaque enjeu.
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/60">
-              Des solutions précises pour financer, structurer, piloter et faire
-              progresser votre entreprise en Tunisie.
-            </p>
-          </div>
-          <img
-            src="/images/Equipe/Tarek_Zouari.jpeg"
-            alt="Expert-comptable de ZNAC"
-            fetchPriority="high"
-            className="aspect-4/3 w-full rounded-xl object-cover object-top"
+      <section className="quran-page-hero">
+        <div className="container">
+          <p className="quran-eyebrow">برامجنا القرآنية</p>
+          <h1>حلقات التحفيظ والتعلّم</h1>
+          <p>
+            برامج يعلنها الفرع للنساء والرجال والأطفال. تواصلوا معنا للتأكد من
+            مواعيد التسجيل والتفاصيل.
+          </p>
+        </div>
+      </section>
+      <section className="quran-section quran-section-ivory">
+        <div className="container">
+          <SectionTitle
+            badge="الحلقات والبرامج"
+            title="تعلّموا القرآن الكريم"
+            subtitle="تُعرض هنا البرامج التي نشرها الفرع في الموقع."
+            align="left"
           />
+          {loading ? (
+            <p className="quran-empty-note" role="status">
+              جارٍ تحميل البرامج...
+            </p>
+          ) : programs.length ? (
+            <div className="quran-program-grid">
+              {programs.map((program) => (
+                <article className="quran-program-card" key={program._id}>
+                  {program.coverImage ? (
+                    <SanityImage
+                      source={program.coverImage}
+                      alt={program.title}
+                      width={760}
+                      height={480}
+                      className="quran-program-image"
+                    />
+                  ) : (
+                    <div className="quran-program-placeholder">
+                      <BookOpen aria-hidden="true" />
+                    </div>
+                  )}
+                  <div className="quran-program-content">
+                    <span className="quran-category">
+                      {audienceLabels[program.audience]}
+                    </span>
+                    <h2>{program.title}</h2>
+                    {program.shortDescription && <p>{program.shortDescription}</p>}
+                    {program.description && <p>{program.description}</p>}
+                    <ul className="quran-program-details">
+                      {program.schedule && (
+                        <li>
+                          <CalendarDays aria-hidden="true" />
+                          {program.schedule}
+                        </li>
+                      )}
+                      {program.location && (
+                        <li>
+                          <MapPin aria-hidden="true" />
+                          {program.location}
+                        </li>
+                      )}
+                    </ul>
+                    <p className="quran-registration-status">
+                      {program.registrationOpen
+                        ? "التسجيل متاح وفق تعليمات الفرع"
+                        : "يرجى التواصل مع الفرع للاستفسار عن التسجيل"}
+                    </p>
+                    {program.registrationInstructions && (
+                      <p>{program.registrationInstructions}</p>
+                    )}
+                    <Link
+                      to="/contact"
+                      className="quran-button quran-button-primary"
+                    >
+                      الاستفسار والتسجيل
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="quran-empty-note" role="status">
+              لا توجد برامج منشورة حاليًا. يرجى التواصل مع الفرع للاستفسار عن
+                الحلقات ومواعيدها.
+            </p>
+          )}
         </div>
       </section>
-      <section className="bg-paper px-4 pb-28 pt-8 text-ink md:px-8">
-        <div className="container grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
-            const Icon = iconMap[service.icon] || Building2;
-            return (
-              <article key={service._id} className="service-card reveal-item">
-                {service.coverImage ? (
-                  <SanityImage
-                    source={service.coverImage}
-                    alt={service.title}
-                    width={800}
-                    height={450}
-                    className="mb-5 aspect-video w-full rounded-lg object-cover"
-                  />
-                ) : (
-                  <img
-                    src="/images/Equipe/Tarek_Zouari.jpeg"
-                    alt=""
-                    loading="lazy"
-                    className="mb-5 aspect-video w-full rounded-lg object-cover object-top"
-                  />
-                )}
-                <div className="service-icon">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <p className="service-eyebrow">{service.category}</p>
-                <h2 className="mt-3 text-2xl font-bold">{service.title}</h2>
-                <p className="mt-4 leading-7 text-ink/65">
-                  {service.shortDescription}
-                </p>
-                <Link
-                  to={`/services/${service.slug}`}
-                  className="mt-7 inline-flex items-center gap-2 font-semibold text-gold"
-                >
-                  Consulter le service <ArrowRight className="w-4 h-4" />
-                </Link>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-    </div>
+    </main>
   );
 };
 

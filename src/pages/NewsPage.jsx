@@ -5,18 +5,20 @@ import { seoConfig } from "../config/seoConfig";
 
 export default function NewsPage() {
   return (
-    <div className="bg-navy pb-20 pt-24">
+    <main className="quran-page">
       <Seo {...seoConfig.news} />
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <SectionTitle
-          badge="Actualités"
-          title="Actualités et analyses"
-          highlight="professionnelles"
-          subtitle="Réflexions et informations sur les enjeux des entreprises."
-          headingAs="h1"
-        />
+      <div className="quran-page-hero">
+        <div className="container">
+          <SectionTitle
+            badge="أنشطة الفرع"
+            title="الأنشطة والفعاليات"
+            highlight="ومعرض الصور والفيديوهات"
+            subtitle="إعلانات الأنشطة والفعاليات والصور والمنشورات التي يشاركها الفرع."
+            headingAs="h1"
+          />
+        </div>
       </div>
       <News />
-    </div>
+    </main>
   );
 }

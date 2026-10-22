@@ -8,8 +8,8 @@ const WhatsAppButton = () => {
   const { data: settings } = useSiteSettings();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const siteName = settings?.gymName || siteConfig.name;
-  const whatsappNumber = settings?.whatsapp || siteConfig.whatsapp;
+  const siteName = siteConfig.name;
+  const whatsappNumber = settings?.whatsapp?.replace(/\D/g, "");
 
   useEffect(() => {
     // Show after scroll
@@ -37,37 +37,36 @@ const WhatsAppButton = () => {
   }, [isVisible]);
 
   const sendWhatsApp = (message) => {
-    const number = whatsappNumber.replace(/[^0-9]/g, "");
-    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
     setIsOpen(false);
   };
 
   const quickMessages = [
     {
-      label: "Parler de mon projet",
-      message: `Bonjour, je souhaite discuter de mon projet avec ${siteName}.`,
+      label: "الاستفسار عن الحلقات",
+      message: `السلام عليكم، أود الاستفسار عن حلقات القرآن الكريم لدى ${siteName}.`,
     },
     {
-      label: "Découvrir vos services",
-      message: `Bonjour, je souhaite en savoir plus sur les services de ${siteName}.`,
+      label: "التسجيل في برنامج",
+      message: `السلام عليكم، أود الاستفسار عن التسجيل في برامج ${siteName}.`,
     },
     {
-      label: "Autre demande",
-      message: `Bonjour, je souhaite avoir plus d'informations sur ${siteName}.`,
+      label: "استفسار آخر",
+      message: `السلام عليكم، أود الاستفسار عن أنشطة ${siteName}.`,
     },
   ];
 
-  if (!isVisible) return null;
+  if (!isVisible || !whatsappNumber) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-40">
+    <div className="fixed bottom-6 left-6 z-40">
       {/* Quick messages popup */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 mb-2 w-64 bg-gym-bg-light rounded-xl border border-gym-border shadow-2xl overflow-hidden animate-slideUp">
+        <div className="absolute bottom-16 left-0 mb-2 w-64 bg-gym-bg-light rounded-xl border border-gym-border shadow-2xl overflow-hidden animate-slideUp">
           <div className="p-3 border-b border-gym-border">
             <span className="text-white font-medium text-sm">
-              Que puis-je faire pour vous ?
+              كيف يمكننا مساعدتكم؟
             </span>
           </div>
           <div className="p-2 space-y-1">
@@ -75,7 +74,7 @@ const WhatsAppButton = () => {
               <button
                 key={index}
                 onClick={() => sendWhatsApp(item.message)}
-                className="w-full text-left px-3 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="w-full text-right px-3 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
               >
                 {item.label}
               </button>
@@ -88,7 +87,7 @@ const WhatsAppButton = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="whatsapp-btn relative w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-        aria-label="WhatsApp"
+        aria-label="التواصل عبر واتساب"
       >
         {isOpen ? (
           <X className="w-6 h-6 text-white" />

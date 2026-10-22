@@ -1,8 +1,7 @@
 export const siteConfig = {
-  name: "ZNAC · Conseil de confiance",
+  name: "الفرع المحلي للرابطة الوطنية للقرآن الكريم",
   siteUrl: "https://zouari-njah-accounting-consulting-multipage.vercel.app",
-  whatsapp: "+216 00 00 00 00",
-  accentColor: "#C7A35A",
+  accentColor: "#176247",
 };
 
 export default siteConfig;

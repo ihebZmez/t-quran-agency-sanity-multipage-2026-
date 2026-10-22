@@ -20,4 +20,4 @@
 - `src/components` — layout, sections, forms, UI
 - `src/hooks` — Sanity data hooks
 - `src/queries` — GROQ queries
-- `znac/` — Sanity Studio & schemas
+- `association-coran-kelibia/` — Sanity Studio & schemas

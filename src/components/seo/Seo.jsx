@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { siteConfig } from "../../config/siteConfig";
 
 const Seo = ({
-  title = "ZNAC | Conseil financier, juridique et stratégique",
+  title = "الرابطة الوطنية للقرآن الكريم — قليبية",
   description = "",
   keywords = [],
   canonical = "/",
@@ -35,8 +35,8 @@ const Seo = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       {imageUrl && <meta property="og:image" content={imageUrl} />}
-      <meta property="og:site_name" content="ZNAC" />
-      <meta property="og:locale" content="fr_TN" />
+      <meta property="og:site_name" content={siteConfig.name} />
+      <meta property="og:locale" content="ar_TN" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

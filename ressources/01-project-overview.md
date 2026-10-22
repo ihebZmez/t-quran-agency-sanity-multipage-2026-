@@ -1,8 +1,8 @@
 # 01 — Project Overview
 
-## Zouari Njah Accounting Consulting Multipage (ZNAC)
+## Association Coran Kelibia (association-coran-kelibia)
 
-Premium multi-page website for a Tunisian ZNAC.
+Premium multi-page website for a Tunisian association-coran-kelibia.
 
 ### Goal
 

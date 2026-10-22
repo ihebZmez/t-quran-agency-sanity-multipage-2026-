@@ -2,39 +2,39 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'service',
-  title: 'Service',
+  title: 'البرامج وحلقات التحفيظ',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Titre',
+      title: 'اسم البرنامج',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
-    defineField({name: 'slug', title: 'Slug', type: 'slug', validation: (Rule) => Rule.required()}),
-    defineField({name: 'shortDescription', title: 'Description courte', type: 'text', rows: 3}),
-    defineField({name: 'description', title: 'Description complète', type: 'text', rows: 6}),
+    defineField({name: 'slug', title: 'الرابط المختصر', type: 'slug', options: {source: 'title'}, validation: (Rule) => Rule.required()}),
+    defineField({name: 'shortDescription', title: 'نبذة قصيرة', type: 'text', rows: 3}),
+    defineField({name: 'description', title: 'تفاصيل البرنامج', type: 'text', rows: 6}),
     defineField({
       name: 'icon',
-      title: 'Icône',
+      title: 'أيقونة',
       type: 'string',
-      description: 'Nom d’icône Lucide ou emoji',
+      description: 'اسم أيقونة من Lucide أو رمز تعبيري',
     }),
     defineField({
       name: 'coverImage',
-      title: 'Image de couverture',
+      title: 'صورة البرنامج',
       type: 'image',
       options: {hotspot: true},
     }),
     defineField({
       name: 'heroImage',
-      title: 'Image de section',
+      title: 'صورة رئيسية',
       type: 'image',
       options: {hotspot: true},
     }),
     defineField({
       name: 'category',
-      title: 'Catégorie',
+      title: 'التصنيف',
       type: 'string',
       options: {
         list: [
@@ -53,6 +53,35 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'audience',
+      title: 'الفئة المستهدفة',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'النساء', value: 'women'},
+          {title: 'الرجال', value: 'men'},
+          {title: 'الأطفال', value: 'children'},
+          {title: 'الجميع', value: 'all'},
+        ],
+        layout: 'radio',
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({name: 'schedule', title: 'موعد الحلقة', type: 'string'}),
+    defineField({name: 'location', title: 'مكان الحلقة', type: 'string'}),
+    defineField({
+      name: 'registrationInstructions',
+      title: 'تعليمات التسجيل',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'registrationOpen',
+      title: 'التسجيل مفتوح',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'features',
       title: 'Fonctionnalités',
       type: 'array',
@@ -68,10 +97,10 @@ export default defineType({
     }),
     defineField({name: 'ctaLabel', title: 'Texte du CTA', type: 'string'}),
     defineField({name: 'ctaLink', title: 'Lien du CTA', type: 'url'}),
-    defineField({name: 'order', title: 'Ordre d’affichage', type: 'number', initialValue: 0}),
+    defineField({name: 'order', title: 'ترتيب العرض', type: 'number', initialValue: 0}),
     defineField({
       name: 'active',
-      title: 'Afficher sur le site',
+      title: 'نشر على الموقع',
       type: 'boolean',
       initialValue: true,
     }),

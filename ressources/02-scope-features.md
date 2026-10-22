@@ -10,7 +10,7 @@
 - **Corporate** — B2B wellness offer
 - **Actualités** — news & announcements
 - **Shop** — partner products with WhatsApp CTA
-- **Contact** — reservation form, map, ZNAC info
+- **Contact** — reservation form, map, association-coran-kelibia info
 
 ## Conversion Features
 
