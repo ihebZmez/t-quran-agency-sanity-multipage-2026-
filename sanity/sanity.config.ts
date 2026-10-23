@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'الفرع المحلي للرابطة الوطنية للقرآن الكريم — سيدي بوضاوي، قليبية',
 
-  projectId: 'm123456',
+  projectId: '1zwn5w1e',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
